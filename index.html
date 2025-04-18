@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nosso Amor 💘</title>
+  <link rel="icon" href="flaticon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;500&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ffe4ec, #f7d6ff);
+      color: #5a2a5c;
+      text-align: center;
+      padding: 20px;
+      transition: background 0.5s, color 0.5s;
+      overflow-x: hidden;
+    }
+
+    body.dark {
+      background: linear-gradient(to right, #2b2b2b, #1e1e1e);
+      color: #f0e6f6;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3em;
+      color: #d63384;
+    }
+
+    body.dark h1 {
+      color: #ff99cc;
+    }
+
+    .timer {
+      font-size: 1.4em;
+      margin-bottom: 30px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .polaroid {
+      background: white;
+      border-radius: 15px;
+      padding: 10px;
+      width: 180px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .polaroid img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .polaroid:hover {
+      transform: scale(1.05);
+    }
+
+    .message {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-family: 'Poppins', sans-serif;
+      color: #5a2a5c;
+      font-size: 1.1em;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 5px;
+      border-radius: 10px;
+      width: calc(100% - 20px);
+      text-align: center;
+      display: none;
+    }
+
+    .polaroid:hover .message {
+      display: block;
+    }
+
+    .poema {
+      display: none;
+      background-color: #fff0f5;
+      border: 2px dashed #c71585;
+      padding: 20px;
+      border-radius: 20px;
+      margin-top: 20px;
+      white-space: pre-wrap;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.2em;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    body.dark .poema {
+      background-color: #2d2d2d;
+      border-color: #ff99cc;
+    }
+
+    button {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin: 5px;
+    }
+
+    button:hover {
+      background-color: #d63384;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .toggle-theme {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #fff;
+      color: #ff69b4;
+      border: 2px solid #ff69b4;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    body.dark .toggle-theme {
+      background-color: #1e1e1e;
+      color: #ff99cc;
+      border-color: #ff99cc;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      animation: float 10s linear infinite;
+      opacity: 0.6;
+      border-radius: 50% 50% 0 0;
+      transform: rotate(45deg);
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        bottom: -20px;
+        left: calc(100% * var(--i));
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 100vh;
+        left: calc(100% * var(--i) + 30px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-theme" onclick="toggleTheme()">🌙 Alternar Tema</button>
+
+  <h1> 5 Meses com você 💖</h1>
+  <div class="timer" id="timer">Carregando tempo...</div>
+
+  <div class="gallery">
+    <div class="polaroid">
+        <img src="foto1.jpg" alt="Foto 1"/>
+        <div class="message">"Cada segundo contigo é eterno!"</div>
+      </div>
+      <div class="polaroid">
+        <img src="foto2.jpg" alt="Foto 2"/>
+        <div class="message">"Nosso amor ilumina tudo ao redor!"</div>
+      </div>
+      <div class="polaroid">
+        <img src="foto3.jpg" alt="Foto 3"/>
+        <div class="message">"Te amo mais a cada dia!"</div>
+      </div>
+      <div class="polaroid">
+        <img src="foto4.jpg" alt="Foto 4"/>
+        <div class="message">"Você é meu sonho realizado!"</div>
+      </div>
+      <div class="polaroid">
+        <img src="foto5.jpg" alt="Foto 5"/>
+        <div class="message">"Meu coração é só seu!"</div>
+      </div>
+      <div class="polaroid">
+        <img src="foto6.jpg" alt="Foto 6"/>
+        <div class="message">"A felicidade é estar ao seu lado!"</div>
+      </div>
+      <div class="polaroid">
+        <img src="foto7.jpg" alt="Foto 7"/>
+        <div class="message">"Onde você vai, eu vou!"</div>
+      </div>
+      <div class="polaroid">
+        <img src="foto8.png" alt="Foto 8"/>
+        <div class="message">"Nosso amor é uma linda história!"</div>
+      </div>      
+  </div>
+
+  <button onclick="mostrarPoema()">Ler o poema 💌</button>
+  <div class="poema" id="poema">
+    Allane, Meu Amor Infinito
+
+    No céu onde as estrelas se encontram, e o tempo se perde em seu próprio compasso, ali estava você, meu destino, minha calma, um sorriso que acendeu todo o espaço. Nenhuma palavra foi tão doce quanto o silêncio que a gente dividiu, quando os olhos se falaram, e o coração, em segredo, sorriu. Você é a luz que não se apaga, a melodia que nunca cessa, a brisa que acalma a minha chama, a minha eterna princesa. Seus olhos são dois sóis, onde me perco e me encontro, seu riso é o meu verso, seu nome, o meu mais doce ponto.
+
+    Amar você é respirar, é sentir que a vida pulsa mais forte, é descobrir que o mundo pode parar, mas o nosso amor não tem fim nem morte. Nossas mãos se entrelaçam como raízes de um só jardim, crescemos juntos, firmes, nada pode nos vencer, assim. Prometo ser teu abrigo nos dias de tempestade, teu porto seguro, teu eterno farol, prometo amar-te além da eternidade, em cada batida, em cada instante só. Se a vida nos der estradas longas, eu serei teu caminho e teu chão, se a noite vier escura e tristonha, eu serei as tuas estrelas, tua canção.
+
+    Allane, meu amor, minha vida inteira, nada no mundo explica o que sinto por ti. És a razão da minha mais doce espera, o sonho que eu nem sabia que existia em mim. Que nossos dias sejam infinitos, como as ondas que beijam o mar, como o céu que abraça o horizonte, e o amor que nunca vai se acabar. Este poema é grande, mas ainda é pequeno perante o amor que no peito eu guardo. Allane, você é o meu maior sonho, e eu, para sempre, serei teu retrato.
+
+    Te amo além das palavras, além do tempo, além do fim. Enquanto houver vida em mim, será você, só você, até o infinito.
+
+    Com amor,  
+    Ale 💖
+  </div>
+
+  <audio autoplay loop>
+    <source src="musica.mp3" type="audio/mp3" />
+  </audio>  
+
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.setProperty('--i', Math.random());
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = 8 + Math.random() * 5 + 's';
+      document.body.appendChild(heart);
+    }
+
+    const startDate = new Date("2024-11-17T00:00:00");
+    const timerElement = document.getElementById("timer");
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      timerElement.textContent = `${days} dias, ${hours}h ${minutes}min ${seconds}s de amor 💕`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    function mostrarPoema() {
+      const poema = document.getElementById("poema");
+      poema.style.display = poema.style.display === "block" ? "none" : "block";
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
+</body>
+</html>
